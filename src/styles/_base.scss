@@ -1,0 +1,375 @@
+body {
+    margin: 0rem;
+    font-size: $large-font-size;
+    font-family: $sans-serif-fonts;
+    overflow: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    @include no-touch-highlight;
+}
+
+.base-panel-style {
+    @include themed('color', 'default-font-colour');
+    @include themed('background-color', 'default-panel-colour');
+    position: absolute;
+    z-index: 99;
+    @include no-touch-highlight;
+}
+
+hr {
+    margin: 2px 1px;
+    opacity: 0.2;
+}
+
+div {
+    user-select: none;
+    overflow: none
+}
+
+label {
+    @include themed('font-weight', 'normal');
+    @include themed('color', 'default-font-colour');
+    font-family: $sans-serif-fonts;
+}
+
+.heading {
+    @include themed('color', 'dim-font-colour');
+    font-family: $sans-serif-fonts;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+button {
+    appearance: none;
+    box-sizing: border-box;
+    display: inline-block;
+    @include themed('color', 'default-font-colour');
+    @include themed('background', 'default-background-colour');
+    font-size: 1.1REM;
+    padding: 8px 12px;
+    margin: 4px 2px;
+    outline: 0px;
+    text-align: center;
+    @include themed('border-color', 'default-border-colour');
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    pointer-events: auto;
+    text-decoration: none;
+
+    &:hover {
+        @include themed('background', 'shaded-background-colour');
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:active {
+        transform: scale(0.99);
+    }
+
+    @include no-touch-highlight;
+}
+
+textarea {
+    appearance: none;
+    @include themed('background-color', 'default-background-colour');
+    @include themed('color', 'default-font-colour');
+    font-family: $sans-serif-fonts;
+    font-size: $large-font-size;
+    width: 96%;
+    padding: 3px 15px;
+    margin: 2px 2px 2px 12px;
+    box-sizing: border-box;
+    outline: 1px;
+    @include themed('border-color', 'default-border-colour');
+    border-style: solid;
+    border-width: 1px;
+    resize: none;
+    box-shadow: inset 0 0 0 0 transparent;
+}
+
+input[type=text] {
+    appearance: none;
+    box-sizing: border-box;
+    @include themed('font-weight', 'normal');
+    @include themed('background-color', 'default-background-colour');
+    @include themed('color', 'default-font-colour');
+    font-size: 1.1REM;
+    width: 96%;
+    padding: 8px 12px;
+    margin: 4px 2px;
+    outline: 1px;
+    @include themed('border-color', 'default-border-colour');
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: inset 0 0 0 0 transparent;
+}
+
+.select-container {
+    width: 97%;
+    margin-left: 16px;
+    position: relative;
+    display: block;
+
+    &:before {
+        font-family: $font-awesome-fonts;
+        font-size: $large-font-size;
+        font-weight: 900;
+        @include themed('color', 'default-font-colour');
+        position: absolute;
+        left: -6px;
+        top: 6px;
+        content: "\f0d7";
+        z-index: 1;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    @include no-touch-highlight;
+}
+
+select {
+    appearance: none;
+    display: block;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 0 0 transparent;
+    background-color: transparent;
+    font-size: 1.1REM;
+    font-family: $sans-serif-fonts;
+    @include themed('font-weight', 'normal');
+    @include themed('color', 'default-font-colour');
+    padding: 8px 12px;
+    width: 100%;
+    max-width: 100%;
+    margin: 4px 2px;
+    border: none;
+    outline: 1px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: transparent;
+    }
+
+    &:disabled {
+        @include themed('color', 'disabled-font-colour');
+
+        &:hover {
+            @include themed('border-color', 'default-border-colour');
+        }
+    }
+
+    option {
+        @include themed('background-color', 'deeper-background-colour');
+
+        &:hover {
+            @include themed('border-color', 'default-border-colour');
+        }
+    }
+}
+
+.container {
+    display: inline-flex;
+    box-sizing: border-box;
+    position: relative;
+    font-size: $mid-font-size;
+    height: 28px;
+    width: auto;
+    pointer-events: auto;
+    vertical-align: center;
+    user-select: none;
+    padding: 0px;
+    margin: 14px 8px 0px;
+    cursor: pointer;
+    @include themed('font-weight', 'normal');
+}
+
+input[type=radio],
+input[type=checkbox] {
+    appearance: none;
+    @include themed('color', 'dim-font-colour');
+    font-family: $font-awesome-fonts;
+    font-weight: normal;
+    opacity: $base-menu-opacity;
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    font-size: 21px;
+    margin: 0;
+    stroke-width: 0;
+    outline: none;
+    cursor: pointer;
+
+    &::before {
+        position: absolute;
+        padding: 0 5px;
+    }
+
+    &::after {
+        position: absolute;
+    }
+
+    &:disabled {
+        @include themed('color', 'disabled-font-colour');
+
+        &::before {
+            cursor: not-allowed;
+        }
+    }
+
+    &:checked {
+        @include themed('color', 'default-font-colour');
+
+        &::before {
+            color: transparent;
+        }
+
+        &::after {
+            padding: 0 5px;
+        }
+    }
+
+    @include no-touch-highlight;
+}
+
+// Radio buttons
+input[type=radio] {
+    &::before {
+        content: "\f111";
+    }
+
+    &:checked::after {
+        content: "\f192";
+    }
+}
+
+// CheckBox buttons
+input[type=checkbox] {
+    font-weight: 900;
+
+    &::before {
+        content: "\f204";
+    }
+
+    &:checked::after {
+        content: "\f205";
+    }
+}
+
+// Slider
+input[type=range] {
+    appearance: none;
+    opacity: $normal-bright-opacity;
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+    pointer-events: all;
+    margin-top: 14px;
+    margin-bottom: 2px;
+    @include themed('background-color', 'slider-track-colour');
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        cursor: pointer;
+        height: 17px;
+        width: 17px;
+        border-radius: 50%;
+        margin-top: -6px;
+    }
+
+    @include themed-webkit-slider-thumb('slider-progress-colour', 'default-font-colour');
+
+    &::-webkit-slider-runnable-track {
+        -webkit-appearance: none;
+        cursor: pointer;
+        height: 5px;
+        @include themed('background', 'slider-track-colour');
+    }
+
+    &::-moz-range-progress {
+        @include themed('background-color', 'slider-progress-colour');
+    }
+
+    &::-moz-range-track {
+        @include themed('background-color', 'slider-track-colour');
+    }
+
+    &::-ms-fill-lower {
+        @include themed('background-color', 'slider-progress-colour');
+    }
+
+    &::-ms-fill-upper {
+        @include themed('background-color', 'slider-track-colour');
+    }
+
+    &:focus {
+        outline: none;
+
+        &::-webkit-slider-runnable-track {
+            @include themed('background', 'slider-track-colour');
+        }
+    }
+}
+
+.general-button-style {
+    pointer-events: auto;
+    cursor: pointer;
+    margin: 5px 5px 8px;
+    width: 58px;
+    height: 58px;
+    border: 1.5px;
+    border-color: transparent;
+    background-color: transparent;
+    opacity: $base-menu-opacity;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include glow-touch-highlight;
+
+    i {
+        @include themed('color', 'default-font-colour');
+        font-size: 26px;
+    }
+
+    &:hover {
+        opacity: $hover-menu-opacity;
+    }
+
+    &:active {
+        opacity: $base-menu-opacity;
+    }
+}
+
+.map-button-style {
+    @extend .general-button-style;
+    border-style: solid;
+    border-radius: 3px;
+    @include themed('border-color', 'default-border-colour');
+    @include themed('background', 'default-background-colour');
+    box-shadow: 1px 1px 2px $menu-shadow-colour;
+
+    &:hover {
+        box-shadow: 2px 2px 4px $menu-shadow-colour;
+    }
+
+    &:active {
+        box-shadow: 1px 1px 2px $menu-shadow-colour;
+    }
+}
+
+.selected-map-button-style {
+    @extend .map-button-style;
+    @include themed('border-color', 'bright-border-colour');
+}
+
+.disabled-button-style {
+    @extend .general-button-style;
+
+    pointer-events: none;
+    opacity: $dim-menu-opacity;
+}

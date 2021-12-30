@@ -1,0 +1,225 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#0C0C0C" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>ODDiMoRF HMI</title>
+    <!--Common links-->
+    <link rel="icon" href="./images/favicon.png">
+    <link rel="stylesheet" href="./styles/leaflet.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <!--PWA links-->
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="apple-touch-icon" href="./images/icon-192x192.png">
+</head>
+
+<body class="theme-blank">
+    <div id="topBar"
+        class="top-bar-style">
+        <div class="coordinate">
+            <i class="fas fa-crosshairs"></i>
+            <label id="latitudeView">+00.000000</label>
+            <label id="longitudeView">+000.000000</label>
+        </div>
+        <div class="datetime">
+            <i class="far fa-clock"></i>
+            <label id="timeView"></label>
+        </div>
+    </div>
+    <div id="system-chains-dropdown-panel"
+        class="chain-dropdown-panel-style">
+        <ul id="system-chains-list"></ul>
+        <div class="add-button-style"
+            onclick="top.localChainAdded()">
+            <i class="fas fa-plus-circle"></i>
+        </div>
+    </div>
+    <div id="system-controls-collapsed"
+        class="master-controls-collapsed-panel-style">
+        <div class="general-button-style"
+            onclick="top.toggleNav()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <hr />
+        <div id="chain-control-collapsed"></div>
+    </div>
+    <div id="system-controls-default"
+        class="master-controls-panel-style">
+        <div>
+            <div class="general-button-style"
+                onclick="top.toggleNav()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <input type="checkbox"
+                id="day-night-mode-toggle-default"
+                class="day-night-toggle"
+                onclick="top.setViewMode(this)">
+            <div
+                id="access-settings-button"
+                class="general-button-style"
+                style="right:0; position:absolute;"
+                onclick="top.openSettings()">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+        <hr width="99%" />
+        <div style="display:flex;flex-direction:column;">
+            <div id="chain-control-default"></div>
+            <div id="subsystem-items-stack-default"
+                class="default-items-stack-style"
+                style="display:flex;flex-flow:column;overflow-y:scroll;overflow-x:hidden;"></div>
+        </div>
+    </div>
+    <div id="system-controls-edit"
+        class="master-controls-panel-style">
+        <div style="display:flex;flex-direction:row;width:100%;pointer-events:all;">
+            <div class="disabled-button-style">
+                <i class="fas fa-bars"></i>
+            </div>
+            <input type="checkbox"
+                id="day-night-mode-toggle-edit"
+                class="day-night-toggle"
+                onclick="top.setViewMode(this)">
+            <div class="general-button-style"
+                style="right:72px;position:absolute;"
+                onclick="top.undoChanges()">
+                <i class="fas fa-undo"
+                    style="font-size:24px"></i>
+            </div>
+            <div class="general-button-style"
+                style="right:0;position:absolute;"
+                onclick="top.saveSettings()">
+                <i class="fas fa-save"></i>
+            </div>
+        </div>
+        <div class="broker-endpoint-container-style">
+            <div class="control-panel-edit-container-active"
+                style="display:block;">
+                <label class="select-container">
+                    <select id="broker-protocol-content">
+                        <option value="ws">WS</option>
+                        <option value="wss">WSS</option>
+                    </select>
+                </label>
+                <input id="broker-hostname-content"
+                    type="text"
+                    placeholder="ip"></input>
+                <input id="broker-port-content"
+                    type="text"
+                    placeholder="port"
+                    min="0"
+                    max="65535"></input>
+            </div>
+        </div>
+        <hr width="99%" />
+        <div style="display:flex;flex-direction:column;">
+            <div id="chain-control-edit"
+                class="controls-edit-panel-style"></div>
+            <div id="add-new-chain-to-clean-broker-button"
+                class="chain-add-button-frame-style"
+                onclick="top.localChainAdded()">
+                <i class="fas fa-plus-circle"></i>
+                <p>Press to initialize first chain</p>
+            </div>
+            <div class="subsystem-edit-section-style"
+                style="display:flex;flex-flow:column;overflow-y:scroll;overflow-x:hidden;">
+                <div id="subsystem-items-stack-edit"
+                    class="subsystem-items-edit-style"
+                    style="flex-flow:column;overflow:visible;"></div>
+                <div id="subsystem-items-stack-available"
+                    class="available-items-stack-style"
+                    style="flex-flow:column;overflow:visible;"></div>
+            </div>
+        </div>
+    </div>
+    <div id="map-layers-panel-default"
+        class="layer-controls-panel-default-style">
+        <div id="layer-items-default-stack">
+        </div>
+    </div>
+    <div class="map-controls-panel-style">
+        <div class="minified-camera-controls">
+            <div class="map-button-style"
+                style="grid-row:2;grid-column:2;"
+                onclick="top.goToHome()">
+                <i class="fas fa-home"></i>
+            </div>
+        </div>
+        <div class="expanded-camera-controls">
+            <div class="pan-controls"
+                style="display:grid;gap:0px 0px;">
+                <div class="map-button-style"
+                    style="grid-row:1;grid-column:2;"
+                    onclick="top.panUp()">
+                    <i class="fas fa-caret-up"></i>
+                </div>
+                <div class="map-button-style"
+                    style="grid-row:2;grid-column:1;"
+                    onclick="top.panLeft()">
+                    <i class="fas fa-caret-left"></i>
+                </div>
+                <div class="map-button-style"
+                    style="grid-row:2;grid-column:2;"
+                    onclick="top.goToHome()">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="map-button-style"
+                    style="grid-row:2;grid-column:3;"
+                    onclick="top.panRight()">
+                    <i class="fas fa-caret-right"></i>
+                </div>
+                <div class="map-button-style"
+                    style="grid-row:3;grid-column:2;"
+                    onclick="top.panDown()">
+                    <i class="fas fa-caret-down"></i>
+                </div>
+            </div>
+            <div class="zoom-controls"
+                style="display:grid;grid-template:auto / 32px auto auto 32px;gap:0px 0px;">
+                <div class="map-button-style"
+                    style="grid-column:2;"
+                    onclick="top.zoomIn()">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="map-button-style"
+                    style="grid-column:3;"
+                    onclick="top.zoomOut()">
+                    <i class="fas fa-minus"></i>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="misc-controls">
+                <div id="measure-toggle"
+                    class="map-button-style"
+                    onclick="top.measure()">
+                    <i class="fas fa-ruler"></i>
+                </div>
+                <div id="layers-toggle"
+                    class="map-button-style"
+                    onclick="top.toggleLayersPanel()">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="map-layers-panel-edit"
+        class="layer-controls-panel-edit-style">
+        <div id="layer-items-edit-stack"></div>
+        <svg class="layer-button-overlay-style">
+            <use href="./images/layer-group.svg#icon"
+                preserveAspectRation="true"
+                width="26px"
+                height="26px" />
+        </svg>
+    </div>
+    <div id="map-id"
+        class="map-container-style"></div>
+    <script src="./index.bundle.js"></script>
+</body>
+
+</html>

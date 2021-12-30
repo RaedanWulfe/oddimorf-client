@@ -1,0 +1,39 @@
+$theme-dark: (
+// Font weights
+    light:                      300,
+    normal:                     400,
+    semi-bold:                  600,
+// Foregrounds
+    default-font-colour:       #F2F2F2F2,
+    dim-font-colour:           #C2C2C280,
+    disabled-font-colour:      #62626260,
+// Backgrounds
+    default-background-colour: #121212F0,
+    default-panel-colour:      #121212D0,
+    shaded-background-colour:  #5A5A5A10,
+    deeper-background-colour:  #191919FF,
+    header-background-colour:  #62626250,
+    touch-highlight-colour:    #F2F2F210,
+    warn-background-colour:    #FF494960,
+// Borders
+    default-border-colour:     #80808080,
+    bright-border-colour:      #F2F2F2B2,
+// Scrollbar
+    scrollbar-fill-colour:     #C2C2C220,
+    scrollbar-border-colour:   #FFFFFF20,
+// Sliders
+    slider-track-colour:       #404040FF,
+    slider-progress-colour:    #C2C2C280,
+// States
+    state-failure-colour:      #FF4949FF,
+    state-caution-colour:      #D8BC00FF,
+    state-operational-colour:  #11C585FF,
+    state-inactive-colour:     #C0C0C0FF,
+// Map symbology
+    track-outline-colour:      #FFFFFFFF,
+    track-fill-colour:         #0096FF80,
+    track-trail-colour:        #0D66ECFF,
+    rosette-font-colour:       #528278FF,
+    rosette-line-colour:       #1D1C4CFF,
+    shadow-colour:             #1C1C1CFF,
+);

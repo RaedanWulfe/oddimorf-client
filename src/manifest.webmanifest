@@ -1,0 +1,23 @@
+{
+    "short_name": "ODDiMoRF",
+    "name": "ODDiMoRF HMI",
+    "description": "Operated Dynamic Distributed Modular Radar Framework (ODDiMoRF) web application based Human-Machine Interface.",
+    "icons": [
+        {
+          "src": "./images/icon-192x192.png",
+          "type": "image/png",
+          "sizes": "192x192",
+          "purpose": "any maskable"
+        },
+        {
+          "src": "./images/icon-512x512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+    ],
+    "theme_color": "#F2F2F2",
+    "background_color": "#0C0C0C",
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "scope": "/"
+  }

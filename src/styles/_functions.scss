@@ -1,0 +1,16 @@
+/// Enables progress indication in webkit
+/// @access private
+/// @author D. Bushell
+/// @link https://codepen.io/dbushell/pen/awgLZK?editors=1100
+@function webkit-slider-gradient-shadow($colour, $i: 1) {
+    $val: -#{$i}px 0 0 -#{6px} $colour;
+
+    @if $i==1 {
+        @for $k from 2 through 1000 {
+            $val: #{$val},
+            webkit-slider-gradient-shadow($colour, $k);
+        }
+    }
+
+    @return $val;
+}

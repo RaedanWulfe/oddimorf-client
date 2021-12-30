@@ -1,0 +1,16 @@
+$monospace-fonts:
+    'SourceCodePro',
+    'Courier New',
+    monospace;
+
+.monospace-font {
+    font-family: $monospace-fonts;
+}
+
+@font-face {
+    font-family: SourceCodePro;
+    src: local("SourceCodePro-Regular"),
+        url(../fonts/source-code-pro/SourceCodePro-Regular.ttf);
+    font-style: normal;
+    font-weight: normal;
+}

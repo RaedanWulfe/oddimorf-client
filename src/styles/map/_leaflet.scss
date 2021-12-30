@@ -1,0 +1,91 @@
+.map-container-style {
+    height: 100%;
+    z-index: 1;
+    @include themed('background-color', 'default-background-colour');
+}
+
+.leaflet-container.crosshair-cursor-enabled {
+    cursor: crosshair;
+}
+
+.leaflet-popup {
+    margin-bottom: 0px;
+}
+
+.leaflet-popup-content-wrapper {
+    @include themed('color', 'default-font-colour');
+    @include themed('background', 'default-panel-colour');
+    padding: 1px;
+    margin: 0;
+    border-radius: 2px;
+    font-size: $mid-font-size;
+    line-height: 1REM;
+    font-family: $monospace-fonts;
+}
+
+.leaflet-popup-tip {
+    @include themed('background', 'default-panel-colour');
+}
+
+.leaflet-right {
+    width: 100%;
+}
+
+.leaflet-container {
+    .leaflet-control-attribution {
+        right: 68px;
+        opacity: 0.5;
+        @include themed('color', 'dim-font-colour');
+        @include themed('background', 'default-panel-colour');
+        font-family: $sans-serif-fonts;
+
+        a {
+            @include themed('color', 'default-font-colour');
+        }
+    }
+}
+
+// ============================================================================
+// leaflet.marker default
+// Copyright (c) 2012-2013, Jürgen Treml
+// ============================================================================
+.polyline-measure-tooltip {
+    font-size: $large-font-size;
+    font-family: $monospace-fonts;
+    line-height: 24px;
+    @include themed('color', 'default-font-colour');
+    @include themed('background-color', 'default-panel-colour');
+    border-radius: 3px;
+    margin: 0;
+    padding: 10px;
+    width: auto;
+    height: auto;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.polyline-measure-tooltip-end {
+    @include themed('background-color', 'default-panel-colour');
+}
+
+.polyline-measure-tooltip-total {
+    @include themed('color', 'dim-font-colour');
+    font-style: italic;
+}
+
+.polyline-measure-tooltip-difference {
+    @include themed('color', 'default-font-colour');
+    font-weight: normal;
+}
+
+.polyline-measure-unicode-icon {
+    visibility: hidden;
+}
+
+.leaflet-control {
+    cursor: crosshair;
+}
+
+a.polyline-measure-clearControl:active {
+    background-color: transparent;
+}

@@ -1,0 +1,64 @@
+.track-marker-style {
+    z-index: 9010;
+    pointer-events: none;
+}
+
+.map-symbol-track-label-style {
+    margin: -6px 0 0 54px;
+    label {
+        pointer-events: none;
+        user-select: none;
+        @include themed-text-shadow('shadow-colour');
+        font-family: $monospace-fonts;
+        font-size: $mid-font-size;
+        @include themed('font-weight', 'normal');
+        @include themed('color', 'default-font-colour');
+        opacity: 0.7;
+    }
+}
+
+.map-symbol-track-symbol {
+    path {
+        opacity: 1.0;
+        fill-opacity: 1.0;
+        fill-rule: nonzero;
+        stroke-linecap: butt;
+        stroke-linejoin: miter;
+        stroke-miterlimit: 4px;
+        stroke-dasharray: none;
+        stroke-dashoffset: 0px;
+        stroke-opacity: 0.85;
+    }
+
+    .symbol-icon-style {
+        @include themed('stroke', 'track-outline-colour');
+        stroke-width: 1.5px;
+    }
+
+    .symbol-shadow-style {
+        pointer-events: none;
+        fill: $track-shadow-colour;
+        stroke: $track-shadow-colour;
+        stroke-width: 1px;
+    }
+
+    .map-symbol-track-symbol-shadow {
+        pointer-events: none;
+        opacity: 0.95;
+        @include themed('fill', 'label-shadow-colour');
+        fill-opacity: 1.0;
+        fill-rule: nonzero;
+        @include themed('stroke', 'default-background-colour');
+        stroke-width: 10px;
+        stroke-linecap: butt;
+        stroke-linejoin: miter;
+        stroke-miterlimit: 4px;
+        stroke-dasharray: none;
+        stroke-dashoffset: 0px;
+        stroke-opacity: 0.5;
+    }
+
+    circle {
+        @include themed('fill', 'default-background-colour');
+    }
+}

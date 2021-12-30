@@ -1,0 +1,96 @@
+/// Enables themed progress indication in webkit
+/// @param {String} $key - Key color to use from theme.
+/// @param {Map} $themes [$themes] - Map of themes to use.
+@mixin themed-webkit-scrollbar-track($key, $themes : $themes) {
+
+    // Iterate over the themes
+    @each $theme,
+    $colours in $themes {
+
+        // Create a selector
+        &.theme-#{$theme},
+        .theme-#{$theme} & {
+            // Output the declaration
+            &::-webkit-scrollbar-track {
+                box-shadow: webkit-slider-gradient-shadow(map-get($colours, $key), 1);
+            }
+        }
+    }
+}
+
+/// Enables themed progress indication in webkit
+/// @param {String} $key0 - Primary key color to use from theme.
+/// @param {String} $key1 - Secondary key color to use from theme.
+/// @param {Map} $themes [$themes] - Map of themes to use.
+@mixin themed-webkit-slider-thumb($key0, $key1, $themes : $themes) {
+
+    // Iterate over the themes
+    @each $theme,
+    $colours in $themes {
+
+        // Create a selector
+        &.theme-#{$theme},
+        .theme-#{$theme} & {
+            // Output the declaration
+            &::-webkit-slider-thumb {
+                background-color: map-get($colours, $key1);
+                box-shadow: webkit-slider-gradient-shadow(map-get($colours, $key0), 1);
+            }
+        }
+    }
+}
+
+/// Enables themed progress indication in webkit
+/// @param {String} $key - Key color to use from theme.
+/// @param {Map} $themes [$themes] - Map of themes to use.
+@mixin themed-text-shadow($key, $themes : $themes) {
+
+    // Iterate over the themes
+    @each $theme,
+    $colours in $themes {
+
+        $themeColour: map-get($colours, $key);
+
+        // Create a selector
+        &.theme-#{$theme},
+        .theme-#{$theme} & {
+            // Output the declaration
+            text-shadow:
+                0px 0px  3px $themeColour,
+                0px 0px  8px $themeColour,
+                0px 0px 10px $themeColour,
+                0px 0px 10px $themeColour,
+                0px 0px 12px $themeColour;
+            // $blur map-get($colours, $key);
+        }
+    }
+}
+
+/// Themify mixin
+/// @access private
+/// @author Hugo Giraudel
+/// @param {String} $property - Property to themify.
+/// @param {String} $key - Key color to use from theme.
+/// @param {Boolean} $isImportant - CSS entry needs '!important' to override deeper cascades.
+/// @param {Map} $themes [$themes] - Map of themes to use.
+@mixin themed($property, $key, $isImportant: false, $themes: $themes) {
+
+    // Iterate over the themes
+    @each $theme,
+    $sets in $themes {
+
+        // Create a selector
+        &.theme-#{$theme},
+        .theme-#{$theme} & {
+
+            // Output the declaration
+            @if $isImportant==true {
+                #{$property}: map-get($sets, $key) !important;
+            }
+
+            @else {
+                #{$property}: map-get($sets, $key);
+            }
+        }
+    }
+}

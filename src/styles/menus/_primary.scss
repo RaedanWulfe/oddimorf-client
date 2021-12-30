@@ -1,0 +1,382 @@
+.top-bar-style {
+    @extend .base-panel-style;
+    height: $main-top-bar-height;
+    width: 100%;
+    pointer-events: all;
+    @include themed('font-weight', 'normal');
+    @include themed('color', 'default-font-colour');
+    font-size: $mid-font-size;
+    vertical-align: middle;
+
+    box-shadow: 0px 1px 4px $menu-shadow-colour;
+
+    i {
+        @include themed('color', 'dim-font-colour');
+    }
+
+    div {
+        margin: 1px;
+
+        @include no-touch-highlight;
+    }
+
+    .coordinate {
+        float: left;
+        margin-top: 1px;
+
+        i {
+            margin-top: 2px;
+        }
+    }
+
+    .datetime {
+        float: right;
+        margin-top: 1px;
+        @include no-touch-highlight;
+
+        @media only screen and (max-width: 495px) {
+            display: none;
+        }
+
+        i {
+            margin-top: 2px;
+            @include no-touch-highlight;
+        }
+
+    }
+
+    label {
+        font-family: $monospace-fonts;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+}
+
+// Day/night toggle
+.day-night-toggle {
+    font-size: 25px !important;
+    padding: 21px;
+    opacity: 0.95;
+    @include themed('color', 'default-font-colour', true);
+
+    &::before {
+        content: "\f185" !important;
+    }
+
+    &:checked::after {
+        content: "\f186" !important;
+    }
+
+    @include no-touch-highlight;
+
+    i {
+        @include themed('color', 'default-font-colour');
+        font-size: 26px;
+    }
+
+    &:hover {
+        opacity: $hover-menu-opacity;
+    }
+
+    &:active {
+        opacity: $base-menu-opacity;
+    }
+}
+
+.master-controls-panel-style {
+    @extend .base-panel-style;
+    width: $main-control-panel-expanded-width;
+    margin-top: $main-top-bar-height;
+    height: calc(100% - #{$main-top-bar-height});
+    visibility: collapse;
+    pointer-events: all;
+    box-shadow: 4px 0px 4px -3px $menu-shadow-colour;
+
+    div {
+        display: flex;
+        flex-direction: row;
+        float: left;
+
+        .expanded-play-button-style {
+            @extend .play-button-style;
+            outline-width: 1.0px;
+            outline-style: solid;
+            @include themed('outline-color', 'default-border-colour');
+            @include themed('background-color', 'default-background-colour');
+            box-shadow: 1px 1px 4px $menu-shadow-colour;
+
+            &:hover {
+                opacity: $hover-menu-opacity;
+                box-shadow: 2px 2px 4px $menu-shadow-colour;
+            }
+        
+            &:active {
+                opacity: $base-menu-opacity;
+                box-shadow: 1px 1px 2px $menu-shadow-colour;
+            }
+        }
+
+        .enabled-play-button-style {
+            @extend .expanded-play-button-style;
+            pointer-events: all;
+            cursor: pointer;
+        }
+    
+        .disabled-play-button-style {
+            @extend .expanded-play-button-style;
+            opacity: 0.3;
+            pointer-events: none;
+            cursor: none;
+        }
+
+        .labels-block-style {
+            display: flex;
+            flex-direction: column;
+            float: left;
+
+            .chain-label-style {
+                @include themed('color', 'default-font-colour');
+                font-size: $large-font-size;
+                font-family: $sans-serif-fonts;
+                margin: 10px 0px 0px 8px;
+            }
+
+            .state-label-style {
+                font-size: $mid-font-size;
+                @include themed('font-weight', 'semi-bold');
+                font-family: $monospace-fonts;
+                margin: 25px 0px 0px 8px;
+            }
+
+            .failure-text-style {
+                @extend .state-label-style;
+                @include themed('color', 'state-failure-colour');
+            }
+
+            .caution-text-style {
+                @extend .state-label-style;
+                @include themed('color', 'state-caution-colour');
+            }
+
+            .operational-text-style {
+                @extend .state-label-style;
+                @include themed('color', 'state-operational-colour');
+            }
+
+            .inactive-text-style {
+                @extend .state-label-style;
+                @include themed('color', 'state-inactive-colour');
+            }
+
+            .play-icon-style {
+                fill-opacity: $base-menu-opacity;
+                @include themed('color', 'default-font-colour');
+            }
+
+            .stop-icon-style {
+                fill-opacity: 1.0;
+                @include themed('color', 'default-font-colour');
+            }
+
+            .enabled-style {
+                opacity: 1.0;
+                pointer-events: all;
+                cursor: pointer;
+            }
+
+            .disabled-style {
+                opacity: 0.3;
+                pointer-events: none;
+                cursor: none;
+            }
+        }
+    }
+}
+
+.master-controls-collapsed-panel-style {
+    @extend .base-panel-style;
+    width: $main-control-panel-collapsed-width;
+    margin-top: $main-top-bar-height;
+    height: calc(100% - #{$main-top-bar-height});
+    visibility: visible;
+    pointer-events: none;
+    box-shadow: 4px 0px 4px -3px $menu-shadow-colour;
+
+    div {
+        display: flex;
+        flex-direction: row;
+        float: left;
+
+        .enabled-play-button-style {
+            @extend .play-button-style;
+            pointer-events: all;
+            cursor: pointer;
+            @include glow-touch-highlight;
+        }
+    
+        .disabled-play-button-style {
+            @extend .play-button-style;
+            opacity: 0.3;
+            pointer-events: none;
+            cursor: none;
+        }
+    }
+}
+
+.map-controls-panel-style {
+    position: absolute;
+    z-index: 4;
+    margin-top: calc(4px + #{$main-top-bar-height});
+    right: 0px;
+    height: calc(100% - #{$main-top-bar-height});
+    width: 100%;
+    pointer-events: none;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        float: right;
+
+        .pan-controls {
+            top: 0px;
+        }
+
+        .zoom-controls {
+            margin-top: 10px;
+        }
+
+        .misc-controls {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+        }
+    }
+
+    .expanded-camera-controls {
+        @media only screen and (max-width: 495px) {
+            display: none;
+        }
+
+        @media only screen and (max-height: 460px) {
+            display: none;
+        }
+    }
+
+    .minified-camera-controls {
+        display: none;
+
+        @media only screen and (max-width: 495px) {
+            display: block;
+        }
+
+        @media only screen and (max-height: 460px) {
+            display: block;
+        }
+    }
+
+    object {
+        margin: $base-button-spacing;
+        pointer-events: all;
+    }
+}
+
+.control-panel-edit-container {
+    @include themed('background', 'shaded-background-colour');
+    // width:100%;
+    width: 96%;
+    left: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.control-panel-edit-container-inactive {
+    @extend .control-panel-edit-container;
+    display: none;
+    visibility: collapse;
+
+    .notice-label {
+        display: block;
+        @include themed('color', 'default-font-colour');
+        font-size: 1.5REM;
+        text-align: center;
+        top: 46px;
+    }
+
+    .notice-icon {
+        font-family: $font-awesome-fonts;
+        font-size: 96px;
+        @include themed('color', 'dim-font-colour');
+        opacity: $header-menu-opacity;
+        left: 90px;
+        top: 20px;
+        position: absolute;
+    }
+}
+
+.control-panel-edit-container-active {
+    @include themed('font-weight', 'normal');
+    display: block;
+
+    .header-section-style {
+        appearance: none;
+        height: 72px;
+        display: inline-flex;
+        flex-direction: column;
+        position: relative;
+        pointer-events: auto;
+        cursor: pointer;
+        user-select: none;
+        padding: 0px;
+        margin: 10px 0px 0px 4px;
+        border: 1px;
+        border-style: solid;
+        border-radius: 3px;
+        @include themed('border-color', 'default-border-colour');
+        @include themed('background', 'default-background-colour');
+    }
+
+    input[type=text] {
+        font-family: $monospace-fonts;
+    }
+
+    .group-style {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.style-404 {
+    margin: auto;
+    display: block;
+    align-items: center;
+    justify-content: space-around;
+
+    h1 {
+        @include themed('color', 'default-font-colour');
+        font-family: $monospace-fonts;
+        text-align: center;
+        font-size: 2.4REM;
+        text-decoration: none;
+    }
+
+    p {
+        @include themed('color', 'default-font-colour');
+        font-family: $sans-serif-fonts;
+        text-align: center;
+        font-size: 1.6REM;
+        text-decoration: none;
+    }
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+        @include themed('color', 'dim-font-colour');
+        font-family: $sans-serif-fonts;
+        text-align: center;
+        font-size: 1.4REM;
+        text-decoration: none;
+    }
+}

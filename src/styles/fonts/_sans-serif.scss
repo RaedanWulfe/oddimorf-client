@@ -1,0 +1,16 @@
+$sans-serif-fonts:
+    'SourceSansPro',
+    'Helvetica',
+    sans-serif;
+
+.sans-serif-font {
+    font-family: $sans-serif-fonts;
+}
+
+@font-face {
+    font-family: SourceSansPro;
+    src: local("SourceSansPro-Regular"),
+        url(../fonts/source-sans-pro/SourceSansPro-Regular.ttf);
+    font-style: normal;
+    font-weight: normal;
+}

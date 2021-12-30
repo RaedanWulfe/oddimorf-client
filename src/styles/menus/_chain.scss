@@ -1,0 +1,226 @@
+.controls-edit-panel-style {
+    textarea {
+        font-size: 1.3REM;
+        line-height: 32px;
+        width: 242px;
+        height: 70px;
+        margin-left: 0px;
+        overflow: hidden;
+    }
+
+    .line-section {
+        display:flex;
+        flex-direction:row;
+
+        input[type=text] {
+            margin: 4px 0 4px 10px;
+            width:130px;
+            font-family: $monospace-fonts;
+            @include themed('color', 'default-font-colour', true);
+        }
+        @include no-touch-highlight;
+    }
+
+    .panel-toggle-style {
+        appearance: none;
+        pointer-events: auto;
+        cursor: pointer;
+        width: 45px;
+        height: 60px;
+        padding: 15px 0 0 1px;
+        border-style: none;
+        border-color: transparent;
+        background-color: transparent;
+        opacity: $base-menu-opacity;
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        margin: 5px 0 0 8px;
+        @include themed('color', 'default-font-colour', true);
+
+        &::before {
+            content: "\f13a" !important;
+        }
+    
+        &:checked::after {
+            content: "\f139" !important;
+        }
+    
+        &::after {
+            position: absolute;
+        }
+    
+        &:hover {
+            opacity: $hover-menu-opacity;
+        }
+    
+        &:active {
+            opacity: $base-menu-opacity;
+        }
+    
+        @include no-touch-highlight;
+    }
+}
+
+.chain-add-button-frame-style {
+    @include themed('background', 'default-background-colour');
+    position: absolute;
+    clear: both;
+    z-index: 9999;
+    border: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    @include themed('border-color', 'dim-font-colour');
+    padding: 5px 10px;
+    margin: 5px;
+    width: 260px;
+    height: 162px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    cursor: pointer;
+    visibility: collapse;
+
+    i {
+        @include themed('color', 'default-font-colour');
+        padding: 16px 0px;
+        font-size: 24px;
+        @include no-touch-highlight;
+    }
+
+    p {
+        appearance: none;
+        font-family: $sans-serif-fonts;
+        @include themed('color', 'default-font-colour');
+        font-size: 1.6REM;
+        padding: 2px 12px;
+        margin: 4px 2px;
+        @include no-touch-highlight;
+    }
+
+    @include no-touch-highlight;
+}
+
+.chain-dropdown-panel-style {
+    @include themed('background', 'default-background-colour');
+    position: absolute;
+    clear: both;
+    z-index: 9999;
+    border: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    @include themed('border-color', 'dim-font-colour');
+    padding: 5px 15px;
+    box-shadow: 6px 6px 15px #1C1C1CE0;
+    margin-top: 247px;
+    margin-left: 53px;
+    width: 238px;
+    transform: scaleX(0);
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: calc(100% - 246px);
+
+    ul {
+        list-style-type: none;
+        padding: 2px 2px 0px 0px;
+        margin: 0px;
+        @include no-touch-highlight;
+    }
+
+    li {
+        @include themed('color', 'default-font-colour');
+        font-family: $sans-serif-fonts;
+        font-size: 1.3rem;
+        vertical-align: top;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 6px;
+        @include no-touch-highlight;
+
+        div {
+            border-bottom: 1px;
+            border-bottom-style: solid;
+            @include themed('border-color', 'dim-font-colour');
+            vertical-align: top;
+            height: 3.8rem;
+            cursor: pointer;
+            margin-right: 10px;
+            width: 210px;
+            @include no-touch-highlight;
+        }
+
+        .delete-button-style {
+            @include themed('color', 'default-font-colour');
+            font-size: 1.1rem;
+            float: right;
+            vertical-align: middle;
+            opacity: $normal-bright-opacity;
+            cursor: pointer;
+            padding: 18px 2px 0 2px;
+            @include glow-touch-highlight;
+        }
+    }
+
+    .add-button-style {
+        padding: 10px;
+        margin-bottom: 5px;
+        @include themed('color', 'default-font-colour');
+        cursor: pointer;
+        border: 1px;
+        border-style: solid;
+        border-radius: 2px;
+        @include themed('border-color', 'dim-font-colour');
+        vertical-align: middle;
+        text-align: center;
+        @include glow-touch-highlight;
+    }
+}
+
+.broker-endpoint-container-style {
+    width: 100%;
+    margin: 0px;
+    padding-bottom: 6px;
+    @include themed('background', 'header-background-colour');
+    @include no-touch-highlight;
+}
+
+.play-button-style {
+    appearance: none;
+    pointer-events: auto;
+    cursor: pointer;
+    margin: 5px 5px 8px;
+    width: 50px;
+    height: 80px;
+    border-width: 1.0px;
+    border-style: none;
+    border-color: transparent;
+    background-color: transparent;
+    opacity: $base-menu-opacity;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin: 5px 0 0 8px;
+    @include themed('color', 'default-font-colour', true);
+    @include glow-touch-highlight;
+
+    &::before {
+        content: "\f04b" !important;
+    }
+
+    &:checked::after {
+        content: "\f04d" !important;
+    }
+
+    &::after {
+        position: absolute;
+    }
+
+    &:hover {
+        opacity: $hover-menu-opacity;
+    }
+
+    &:active {
+        opacity: $base-menu-opacity;
+    }
+}
